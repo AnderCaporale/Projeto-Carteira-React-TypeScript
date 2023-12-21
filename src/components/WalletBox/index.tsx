@@ -1,0 +1,50 @@
+import React from "react";
+import { Container } from "./style";
+import CountUp from 'react-countup';
+
+
+import dolarImg from '../../assets/dolar.svg'
+import arrowUpImg from '../../assets/arrow-up.svg'
+import arrowDownImg from '../../assets/arrow-down.svg'
+
+interface IWalletBoxProps{
+    title: string;
+    amount: number;
+    footerLabel: string;
+    icon: 'dolar' | 'arrowUp' | 'arrowDown'; 
+    color: string;  
+}
+
+const WalletBox: React.FC<IWalletBoxProps> = ({title, amount, footerLabel, icon, color}) => {
+    
+    const iconSelected:((arg0:string) => string | undefined) = (icon:string) => {
+        switch (icon) {
+            case 'dolar': return dolarImg;
+            case 'arrowUp': return arrowUpImg;
+            case 'arrowDown': return arrowDownImg;
+            default: return undefined;
+        }
+    }
+
+    return(
+        <Container color={color}>
+            <span>{title}</span>
+            <h1>
+                <CountUp
+                    end = {amount}
+                    prefix = {"RS "}
+                    separator = "."
+                    decimal = ","
+                    decimals={2}
+
+                />
+            </h1>
+            <small>{footerLabel}</small>
+            <img src={iconSelected(icon)} alt={title} />
+        </Container>
+
+    )
+
+};
+
+export default WalletBox;
