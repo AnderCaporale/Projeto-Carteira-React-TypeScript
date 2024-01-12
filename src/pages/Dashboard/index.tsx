@@ -6,6 +6,7 @@ import SelectInput from "../../components/SelectInput";
 import WalletBox from "../../components/WalletBox";
 import MessageBox from "../../components/MessageBox";
 import PieChartBox from "../../components/PieChartBox";
+import HistoryBox from "../../components/HistoryBox";
 
 import gains from "../../repositories/gains";
 import expenses from "../../repositories/expenses";
@@ -19,8 +20,7 @@ const Dashboard: React.FC = () => {
 
     const [monthSeleceted, setMonthSelected] = useState<number>(new Date().getMonth()+1);
     const [yearSeleceted, setYearSeleceted] = useState<number>(new Date().getFullYear());
-
-
+    
     const years:{value: number, label: number}[] = useMemo(()=>{
         let uniqueYears:number[] = [];
 
@@ -135,19 +135,65 @@ const Dashboard: React.FC = () => {
                 name: "Entradas",
                 value: totalExpenses,
                 percent: Number(percentGains.toFixed(1)),
-                color: "#E44C4E"
+                color: "#F7931B" 
             },
             {
                 name: "Saídas",
                 value: totalExpenses,
                 percent: Number(percentExpenses.toFixed(1)),
-                color: "#F7931B"
+                color: "#E44C4E"
             }
         ];
 
         return data;
 
     }, [totalGains, totalExpenses]);
+
+
+    const historyData:{monthNumber:number, month: string, amountEntry:number, amountOutput:number}[] = useMemo( ()=>{
+
+        return listMonths.map( ( _, month) => {
+            
+            let amountEntry:number = 0;
+            gains.forEach(gain => {
+                const date:Date = new Date(gain.date);
+                const gainMonth:number = date.getMonth();
+                const gainYear:number = date.getFullYear();
+
+                if(gainMonth === month && gainYear === yearSeleceted){
+                    try{
+                        amountEntry += Number(gain.amount);
+                    } catch {
+                        throw new Error('amountEntry is invalid. It must be a valid number');
+                    }
+                }
+            });
+
+            let amountOutput:number = 0;
+            expenses.forEach(expense => {
+                const date:Date = new Date(expense.date);
+                const expenseMonth:number = date.getMonth();
+                const expenseYear:number = date.getFullYear();
+
+                if(expenseMonth === month && expenseYear === yearSeleceted){
+                    try{
+                        amountOutput += Number(expense.amount);
+                    } catch {
+                        throw new Error('amountOutput is invalid. It must be a valid number');
+                    }
+                }
+            });
+            
+            return {
+                monthNumber: month,
+                month: listMonths[month].substring(0,3),
+                amountEntry,
+                amountOutput
+            }
+
+        } ) 
+    }, [yearSeleceted])
+
 
     return (
         <Container>
@@ -189,6 +235,9 @@ const Dashboard: React.FC = () => {
                 />
 
                 <PieChartBox data={relationExpensesGains} />
+
+                <HistoryBox data={historyData} lineColorAmountEntry="#F7931B" lineColorAmountOutput="#E44C4E"/>
+                
 
             </Content>
             

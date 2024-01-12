@@ -4,28 +4,31 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { Container, SideLeft, LegendContainer, Legend, SideRight } from "./style";
 
 interface IPieChartBoxProps{
-    data:{name:string, value:number, percent:number, color:string}[]
+    data:{name:string, value:number, percent:number, color:string}[];
 }
 
+
 const PieChartBox: React.FC<IPieChartBoxProps> = ({data}) => (
+
+    
     <Container>
+        
         <SideLeft>
             <h2>Relação</h2>
             <LegendContainer>
                 {
                     data.map( (indicator)=>(
                         <Legend key={indicator.name} color={indicator.color}>
-                            <div>{indicator.percent}</div>
+                            <div>{indicator.percent}%</div>
                             <span>{indicator.name}</span>
                         </Legend>
                     ))
                 }
-                
             </LegendContainer>
         </SideLeft>
 
-        <SideRight>
-            <ResponsiveContainer width="100%" height="100%">
+        <SideRight >
+            <ResponsiveContainer>
                 <PieChart>
                     <Pie data={data} dataKey="percent">
                         {
