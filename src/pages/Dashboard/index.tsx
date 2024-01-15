@@ -16,6 +16,7 @@ import listMonths from "../../utils/months";
 import happyImg from '../../assets/happy.svg'
 import sadImg from '../../assets/sad.svg'
 import grinningImg from '../../assets/grinning.svg'
+import opsImg from '../../assets/ops.svg'
 
 const Dashboard: React.FC = () => {
 
@@ -106,6 +107,14 @@ const Dashboard: React.FC = () => {
                 icon: sadImg
             }
 
+        if (totalGains === 0 && totalExpenses===0)
+            return {
+                title: "Ops!",
+                description: "Neste mês, não há registros de entradas ou saídas.",
+                footerText: "Parece que você não fez nenhum registro no mês e ano selecionados",
+                icon: opsImg
+            }
+
         if (totalBalance === 0)
             return {
                 title: "Ufaa!",
@@ -122,14 +131,14 @@ const Dashboard: React.FC = () => {
         }
 
 
-    }, [totalBalance]);
+    }, [totalBalance, totalGains, totalExpenses]);
 
 
     const relationExpensesGains:{name:string, value:number, percent:number, color:string}[] = useMemo(()=>{
         const total:number = totalGains + totalExpenses !== 0 ? totalGains+totalExpenses : 1;
 
-        const percentGains = (totalGains / total) * 100;
-        const percentExpenses = (totalExpenses / total) * 100;
+        const percentGains:number = (totalGains / total) * 100;
+        const percentExpenses:number = (totalExpenses / total) * 100;
 
         const data:{name:string, value:number, percent:number, color:string}[] = [
             {
@@ -320,7 +329,7 @@ const Dashboard: React.FC = () => {
 
                 <BarChartBox data={relationExpensevesRecurrentEventual} title="Saídas"/>
 
-                <BarChartBox data={relationGainsRecurrentEventual} title="Saídas"/>
+                <BarChartBox data={relationGainsRecurrentEventual} title="Entradas"/>
 
             </Content>
             
