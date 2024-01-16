@@ -15,7 +15,7 @@ export const Container = styled.div`
     border-radius: 7px;
     display: flex;
 
-    @media(max-width:770px){
+    @media(max-width:1000px){
         width: 100%;
     }
 
@@ -28,11 +28,11 @@ export const SideLeft = styled.aside`
         margin-bottom: 20px;
     }
 
-    @media(max-width:770px){
+    @media(max-width:1000px){
         font-size: 20px;
     }
 
-    @media(max-width:420px){
+    @media(max-width:650px){
         font-size: 16px;
         padding: 30px 0 0 10px;
     }
@@ -58,7 +58,7 @@ export const LegendContainer = styled.ul`
         background-color: ${props => props.theme.colors.secondary};
     }
 
-    @media(max-width:420px){
+    @media(max-width:650px){
         padding-right: 0;
     }
      

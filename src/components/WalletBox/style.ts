@@ -38,7 +38,7 @@ export const Container = styled.div<IContainerProps>`
         bottom: 10px;
     }
 
-    @media(max-width:770px){
+    @media(max-width:1000px){
         > span {
             font-size: 14px;
         }
@@ -54,7 +54,7 @@ export const Container = styled.div<IContainerProps>`
         }
     }
 
-    @media(max-width:420px){
+    @media(max-width:650px){
 
         width: 100%;
 

@@ -33,7 +33,7 @@ export const Header = styled.header`
         padding-left: 17px;
     }
 
-    @media(max-width:770px){
+    @media(max-width:1000px){
         flex-direction: column;
     }
 
@@ -67,7 +67,7 @@ export const Legend = styled.li<ILegendProps>`
         margin-left: 5px;
     }
 
-    @media(max-width:770px){
+    @media(max-width:1000px){
         margin-left: 18px;
         margin-bottom: 15px;
         >div{
