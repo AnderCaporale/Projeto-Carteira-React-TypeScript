@@ -16,6 +16,11 @@ export const Container = styled.div`
     color: ${props => props.theme.colors.white};
 
     border-radius: 7px;
+
+    @media(max-width:770px){
+        width: 100%;
+    
+    }
 `;
 
 export const SideLeft = styled.aside`

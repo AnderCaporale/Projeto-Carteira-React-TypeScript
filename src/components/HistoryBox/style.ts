@@ -17,7 +17,9 @@ export const Container = styled.div`
     margin: 10px 0;
     padding: 30px 20px;
 
-    border-radius: 7px;    
+    border-radius: 7px;   
+    
+
 `;
 
 export const Header = styled.header`    
@@ -29,6 +31,10 @@ export const Header = styled.header`
     >h2{
         margin-bottom: 20px;
         padding-left: 17px;
+    }
+
+    @media(max-width:770px){
+        flex-direction: column;
     }
 
 `;
@@ -59,5 +65,15 @@ export const Legend = styled.li<ILegendProps>`
 
     >span{
         margin-left: 5px;
+    }
+
+    @media(max-width:770px){
+        margin-left: 18px;
+        margin-bottom: 15px;
+        >div{
+            width: 20px;
+            height: 20px;
+
+        }
     }
 `;

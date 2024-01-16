@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     grid-area: AS;
@@ -25,6 +26,8 @@ export const Container = styled.div`
         }
     }
 
+    position: relative;
+
 `;
 
 
@@ -50,9 +53,45 @@ export const MenuContainer = styled.nav`
     margin-top: 50px;
 `;
 
-export const MenuItemLink = styled.a`
-    
+
+export const MenuItemLink = styled(Link)`
+    color: ${props => props.theme.colors.info};
+    text-decoration: none;
+    transition: opacity ease .3s;
+    display: flex;
+    align-items: center;
+ 
+    margin: 7px 0;
+ 
+    &:hover {
+        opacity: .7;
+    }
+ 
+    > svg {
+        font-size: 18px;
+        margin-right: 5px;
+    }
 `;
 
+export const MenuItemButton = styled.button`
+    color: ${props => props.theme.colors.info};
+    font-size: 16px;
+    border: none;
+    background: none;
 
+    transition: opacity ease .3s;
+    display: flex;
+    align-items: center;
+ 
+    margin: 7px 0;
+ 
+    &:hover {
+        opacity: .7;
+    }
+ 
+    > svg {
+        font-size: 18px;
+        margin-right: 5px;
+    }
 
+`;

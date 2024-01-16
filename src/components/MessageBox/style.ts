@@ -16,11 +16,21 @@ export const Container = styled.div`
     justify-content: space-between;
     
     > header img{
-        width: 35px;
+        width: 30px;
         margin-left: 7px;
     }
 
     > header p{
-        font-size: 18px;
+        font-size: 20px;
     }
+
+    @media(max-width:770px){
+        width: 100%;
+        height: 180px;
+
+        > header p {
+            font-size: 20px;
+        } 
+    }
+
 `;
