@@ -24,11 +24,23 @@ export const TitleContainer = styled.div<ITitleContainerProps>`
             width: 55px;
             border-bottom: 10px solid ${props => props.line_color};
         }
+
+        @media(max-width: 390px){
+            font-size: 26px;
+
+            &::after{
+                border-bottom-width: 5px;
+            }
+        }
     }
 `;
 
 
 export const Controllers = styled.div`
     display: flex;
+
+    @media(max-width: 370px){
+        flex-direction: column;
+    }
 
 `;

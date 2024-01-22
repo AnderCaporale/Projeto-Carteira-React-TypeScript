@@ -147,6 +147,7 @@ const List: React.FC = () => {
                         title= {item.description}
                         subtitle= {item.dateFormatted}
                         amount= {item.amountFormatted}
+                        type = {String(movimentType)}
                     />        
                 ))
             }       

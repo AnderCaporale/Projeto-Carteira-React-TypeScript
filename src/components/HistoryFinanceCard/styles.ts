@@ -1,11 +1,43 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+
+interface IContainerProps {
+    type: string;
+}
 
 
 interface ITagProps {
     color: string;
 }
 
-export const Container = styled.li`
+const animateEntry = keyframes`
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+
+
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+`;
+
+const animateExit = keyframes`
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+`;
+
+
+export const Container = styled.li<IContainerProps>`
     background-color: ${props => props.theme.colors.tertiary};
     list-style: none;
     border-radius: 10px;
@@ -35,6 +67,16 @@ export const Container = styled.li`
         font-weight: 500;
         font-size: 20px;
     }
+
+    ${props => props.type ==="entry-balance" && css`
+        animation: ${animateEntry} 0.5s ease-out;
+    `};
+
+    ${props => props.type ==="exit-balance" && css`
+        animation: ${animateExit} 0.5s ease-out;
+    `};
+    
+
 
 `;
 

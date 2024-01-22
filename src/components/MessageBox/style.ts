@@ -1,4 +1,17 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const animate = keyframes`
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+
+
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+`;
 
 export const Container = styled.div`
     width: 48%;
@@ -32,5 +45,7 @@ export const Container = styled.div`
             font-size: 20px;
         } 
     }
+
+    animation: ${animate} 0.5s;
 
 `;
